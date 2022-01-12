@@ -15,16 +15,13 @@ import routes from './router';
     app.use(bodyParser.json());
     app.use(cors());
     app.use('/api', routes)
-    try {
-        await mongoose.connect(process.env.DB_URL, {});
-    } catch (error) {
-        return console.log(`Sorry you did not connect with database`)
-    }
-    const server = http.createServer(app);
     const port = process.env.PORT || 8000
+    await mongoose.connect(process.env.DB_URL, {});
+    const server = http.createServer(app);
     server.listen(port)
     .on('listening', () => console.log(`App is starting on port: ${port}`))
     .on('error', (err) =>
         console.log(`An error occured while starting server`, err)
     )
+    
 })();
