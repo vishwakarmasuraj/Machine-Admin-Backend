@@ -4,6 +4,9 @@ const express = require('express');
 const router = express.Router();
 const uploadFile = require("./../helper/fileUpload");
 const fs = require('fs')
+import {fileValidRule, filePermissionRule} from '../validation';
+import {auth} from '../helper'
+import {userController} from '../controller';
 
 /**
  * 
@@ -15,8 +18,8 @@ router.post('/file-upload', uploadFile.array("file", 5), (req, res) => {
 /**
  * 
  */
-router.get('/download', (req, res) =>{
-    res.download('./uploads/1642060000990_notebook-natural-laptop-macbook_jpg.jpg', (error)=>{
+router.get('/download/fileName', auth.verifyToken, userController.knowPermission, (req, res) =>{
+    res.download(`${'./uploads/fileName'}`, (error)=>{
         return res.status(403).json({message: 'You do not have access to use this file!!'});
     });
 });
