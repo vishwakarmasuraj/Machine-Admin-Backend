@@ -1,4 +1,4 @@
-import {userModel} from '../models';
+import {userModel, fileModel, filePermissionModel} from '../models';
 import { successHandler, errorHandler } from '../helper/responseHandler';
 import {allConstants} from '../constant';
 import bcrypt from 'bcrypt';
@@ -51,5 +51,30 @@ export const userListing = async (req, res) => {
         successHandler(res, 200, allConstants.FOUND_USER_LIST, result )
     } catch (error) {
         errorHandler(res, 500, allConstants.ERR_MSG)
-    }
+    };
+};
+
+export const fileGet = async(req, res) => {
+  try {
+    console.log(req.userData)
+    const {_id} = req.userData
+    const result = await userModel.find({_id: {$ne: _id}}).select('-password')
+    res.status(200).json({message: 'Found record', result})
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message: 'Something went wrong'});
+  };
+};
+
+export const knowPermission = async (req, res) => {
+  try {
+      console.log(req.userData)
+      const {_id} = req.userData
+      const permission = await filePermissionModel.find({userId: _id})
+      res.status(200).json({msg: 'Able to see all permission', permission}) 
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({message: 'Something went wrong'})
+  }
 }
+

@@ -17,6 +17,14 @@ router.post('/login', userController.userLogin)
  * 
  */
 router.get('/get-user', auth.verifyToken, userController.userListing)
+/**
+ * 
+ */
+router.get('/users', auth.verifyToken, userController.fileGet)
+/**
+ * 
+ */
+router.get('/permission', auth.verifyToken, userController.knowPermission)
 
 
 module.exports = router

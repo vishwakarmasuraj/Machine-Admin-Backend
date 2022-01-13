@@ -1,3 +1,5 @@
 module.exports = {
-    userModel: require('./userModel')
-}
+    userModel: require('./userModel'),
+    fileModel: require('./file'),
+    filePermissionModel: require('./filePermission')
+};

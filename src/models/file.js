@@ -5,8 +5,9 @@ const fileModel = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    url: {
-        type: Schema.Types.String
+    name: {
+        type: Schema.Types.String,
+        ref: 'User'
     }
 }, {timestamps: true})
 
