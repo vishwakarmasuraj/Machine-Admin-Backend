@@ -23,5 +23,4 @@ import routes from './router';
     .on('error', (err) =>
         console.log(`An error occured while starting server`, err)
     )
-    
 })();

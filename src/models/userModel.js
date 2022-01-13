@@ -15,11 +15,6 @@ const UserModel = new Schema ({
     },
     url: {
         type: Schema.Types.String
-    },
-    status: {
-        type: Schema.Types.String,
-        enum: ['active', 'inactive'],
-        default: 'active'
     }
 }, {timestamps: true})
 
