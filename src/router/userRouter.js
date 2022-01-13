@@ -24,7 +24,9 @@ router.get('/users', auth.verifyToken, userController.fileGet)
 /**
  * 
  */
-router.get('/permission', auth.verifyToken, userController.knowPermission)
+// router.get('/permission', auth.verifyToken, userController.knowPermission)
+
+router.post("/allow-permission", auth.verifyToken, userController.givePermission)
 
 
 module.exports = router

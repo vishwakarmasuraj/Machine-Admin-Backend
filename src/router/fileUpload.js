@@ -1,4 +1,4 @@
-const { successHandler} = require('./../helper/responseHandler');
+const { successHandler,  errorHandler} = require('./../helper/responseHandler');
 const {allConstants} = require('./../constant');
 const express = require('express');
 const router = express.Router();
@@ -7,21 +7,31 @@ const fs = require('fs')
 import {fileValidRule, filePermissionRule} from '../validation';
 import {auth} from '../helper'
 import {userController} from '../controller';
+import { fileModel } from '../models';
+
+import canAccessFile from "./../middleware/checkPermission";
 
 /**
  * 
  */
-router.post('/file-upload', uploadFile.array("file", 5), (req, res) => {
-    successHandler(res, 201, allConstants.FILE_UPLOAD_SUCCESS_MSG)
+router.post('/file-upload',auth.verifyToken, uploadFile.single("file"), async (req, res) => {
+
+    try {
+        const fileName = req.file.filename;
+        await fileModel.create({name: fileName, userId: req.userData._id});
+        successHandler(res, 201, allConstants.FILE_UPLOAD_SUCCESS_MSG)
+        
+    } catch (error) {
+        console.log("error", error)
+        return errorHandler(res, 500, allConstants.ERR_MSG);
+    }
 });
 
 /**
  * 
  */
-router.get('/download/fileName', auth.verifyToken, userController.knowPermission, (req, res) =>{
-    res.download(`${'./uploads/fileName'}`, (error)=>{
-        return res.status(403).json({message: 'You do not have access to use this file!!'});
-    });
+router.get('/download/:fileName', auth.verifyToken, canAccessFile,  (req, res) =>{
+    res.download(`./uploads/${req.params.fileName}`);
 });
 
 module.exports = router

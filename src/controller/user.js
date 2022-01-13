@@ -47,7 +47,7 @@ export const userLogin = async (req, res) => {
 
 export const userListing = async (req, res) => {
     try {
-        const result = await userModel.find({});
+        const result = await userModel.find({}).select('-password');
         successHandler(res, 200, allConstants.FOUND_USER_LIST, result )
     } catch (error) {
         errorHandler(res, 500, allConstants.ERR_MSG)
@@ -66,15 +66,19 @@ export const fileGet = async(req, res) => {
   };
 };
 
-export const knowPermission = async (req, res) => {
+export const givePermission = async (req, res) => {
   try {
-      console.log(req.userData)
-      const {_id} = req.userData
-      const permission = await filePermissionModel.find({userId: _id})
-      res.status(200).json({msg: 'Able to see all permission', permission}) 
+    const {_id} = req.userData;
+
+    console.log("{userId: _id}", {userId: _id})
+    console.log("dadfadsf", {userId: _id, allowedUser: req.body.userIds})
+    await filePermissionModel.findOneAndUpdate({userId: _id}, {userId: _id, allowedUser: req.body.userIds}, {new: true, upsert: true });
+    res.status(200).json({message: 'Permission changed successfully!'})
+
   } catch (error) {
     console.log(error)
-    return res.status(500).json({message: 'Something went wrong'})
-  };
+    res.status(500).json({message: 'Something went wrong'});
+    
+  }
 };
 

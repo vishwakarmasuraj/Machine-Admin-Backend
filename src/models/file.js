@@ -6,8 +6,7 @@ const fileModel = new Schema ({
         ref: 'User'
     },
     name: {
-        type: Schema.Types.String,
-        ref: 'User'
+        type: Schema.Types.String
     }
 }, {timestamps: true})
 
