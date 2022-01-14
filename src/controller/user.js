@@ -31,7 +31,7 @@ export const userLogin = async (req, res) => {
     if (!checkPassword){
       return errorHandler(res, 400, allConstants.PASSWORD_DOES_NOT_MATCH);
     };
-    return successHandler(res, 200, allConstants.SIGNUP_SUCCESS_MSG, {
+    return successHandler(res, 200, allConstants.LOGIN_SUCCESS_MSG, {
       token: generateToken(data),
       data
     });
