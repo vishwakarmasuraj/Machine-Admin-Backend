@@ -26,7 +26,7 @@ export const userLogin = async (req, res) => {
     const data = await userModel.findOne({email: req.body.email});
     if (!data){
       return errorHandler(res, 404, allConstants.EMAIL_NOT_FOUND);
-    }
+    };
     const checkPassword = await bcrypt.compare(req.body.password, data.password);
     if (!checkPassword){
       return errorHandler(res, 400, allConstants.PASSWORD_DOES_NOT_MATCH);
