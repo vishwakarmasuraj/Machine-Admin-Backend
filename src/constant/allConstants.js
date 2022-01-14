@@ -6,6 +6,7 @@ module.exports = Object.freeze({
     FILE_NOT_FOUND: 'File not found',
     ROUND: 10,
     FOUND_USER_LIST: 'Found record',
+    PASSWORD_DOES_NOT_MATCH: 'Password does not match',
     COULD_NOT_LOGIN: 'Could not login',
     LOGIN_SUCCESS_MSG: 'Logged in successfully',
     EMAIL_NOT_FOUND: "Email does not exist",

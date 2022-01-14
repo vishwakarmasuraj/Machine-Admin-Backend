@@ -1,26 +1,14 @@
-const { successHandler,  errorHandler} = require('./../helper/responseHandler');
-const {allConstants} = require('./../constant');
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const uploadFile = require("./../helper/fileUpload");
-import {fileValidRule, filePermissionRule} from '../validation';
+import uploadFile from "./../helper/fileUpload";
 import {auth} from '../middleware'
-import { fileModel } from '../models';
+import { userController } from '../controller';
 import canAccessFile from "./../middleware/checkPermission";
 
 /**
  * 
  */
-router.post('/file-upload',auth.verifyToken, uploadFile.single("file"), async (req, res) => {
-    try {
-        const fileName = req.file.filename;
-        await fileModel.create({name: fileName, userId: req.userData._id});
-        successHandler(res, 201, allConstants.FILE_UPLOAD_SUCCESS_MSG)
-    } catch (error) {
-        console.log("error", error)
-        return errorHandler(res, 500, allConstants.ERR_MSG);
-    }
-});
+router.post('/file-upload', auth.verifyToken, uploadFile.single('file'), userController.fileUpload)
 
 /**
  * 
