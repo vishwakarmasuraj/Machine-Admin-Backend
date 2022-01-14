@@ -20,6 +20,5 @@ export const userValidRule = () => {
             }) 
         }),
         body('password').notEmpty().isLength({min: 8}),
-        body('status')
     ]
 }

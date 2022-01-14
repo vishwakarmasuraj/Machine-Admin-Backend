@@ -11,5 +11,7 @@ module.exports = Object.freeze({
     EMAIL_NOT_FOUND: "Email does not exist",
     ERROR_MSG: 'Email is not match',
     PASSWORD_NOT_MATCH: 'Wrong password',
+    FILE_NOT_FOUND: 'File does not exists.',
+    DONT_ACCESS_FOR_FILE: 'You do not have the access for this file.',
     FILE_UPLOAD_SUCCESS_MSG: 'Successfully uploaded file'
 })

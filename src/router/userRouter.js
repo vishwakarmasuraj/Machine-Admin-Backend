@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 import {userValidRule, valid} from '../validation';
-import { auth } from '../helper';
+import { auth } from '../middleware';
 import {userController} from '../controller'
 
 /**
@@ -24,8 +24,6 @@ router.get('/users', auth.verifyToken, userController.fileGet)
 /**
  * 
  */
-// router.get('/permission', auth.verifyToken, userController.knowPermission)
-
 router.post("/allow-permission", auth.verifyToken, userController.givePermission)
 
 

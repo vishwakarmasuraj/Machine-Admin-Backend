@@ -69,16 +69,11 @@ export const fileGet = async(req, res) => {
 export const givePermission = async (req, res) => {
   try {
     const {_id} = req.userData;
-
-    console.log("{userId: _id}", {userId: _id})
-    console.log("dadfadsf", {userId: _id, allowedUser: req.body.userIds})
     await filePermissionModel.findOneAndUpdate({userId: _id}, {userId: _id, allowedUser: req.body.userIds}, {new: true, upsert: true });
     res.status(200).json({message: 'Permission changed successfully!'})
-
   } catch (error) {
     console.log(error)
     res.status(500).json({message: 'Something went wrong'});
-    
   }
 };
 
