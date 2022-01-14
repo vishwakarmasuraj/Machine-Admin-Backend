@@ -28,7 +28,7 @@ TODO: By this PUC project User can understand the flow of File uploading, save i
 ## Contributing
 1. Git command 
 2. Create your feature branch: `git checkout -b feature/signup`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
+3. Commit your changes: `git commit -am 'Starting signup'`
+4. Push to the branch: `git push origin feature/signup`
 
 
