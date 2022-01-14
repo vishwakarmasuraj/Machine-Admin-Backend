@@ -27,16 +27,16 @@ export const userLogin = async (req, res) => {
     if (!data){
       return errorHandler(res, 404, allConstants.EMAIL_NOT_FOUND);
     }
-    const demo = await bcrypt.compare(req.body.password, data.password);
-    if (!demo){
-      return errorHandler(res, 400, allConstants.PASSWORD_DOES_NOT_MATCH)
-    }
+    const checkPassword = await bcrypt.compare(req.body.password, data.password);
+    if (!checkPassword){
+      return errorHandler(res, 400, allConstants.PASSWORD_DOES_NOT_MATCH);
+    };
     return successHandler(res, 200, allConstants.SIGNUP_SUCCESS_MSG, {
       token: generateToken(data),
       data
-    })
+    });
   } catch (error) {
-    return errorHandler(res, 500, allConstants.ERR_MSG)
+    return errorHandler(res, 500, allConstants.ERR_MSG);
   };
 }; 
 
@@ -63,11 +63,11 @@ export const userTruncate = async (req, res) => {
 export const fileGet = async(req, res) => {
   try {
     const {_id} = req.userData
-    const result = await userModel.find({_id: {$ne: _id}}).select('-password')
-    return successHandler(res, 200, allConstants.GET_FILE_MSG, result)
+    const result = await userModel.find({_id: {$ne: _id}}).select('-password');
+    return successHandler(res, 200, allConstants.GET_FILE_MSG, result);
   } catch (error) {
     console.log(error)
-    errorHandler(res, 500, allConstants.ERR_MSG)
+    errorHandler(res, 500, allConstants.ERR_MSG);
   };
 };
 
@@ -77,7 +77,7 @@ export const fileUpload = async (req, res) => {
         await fileModel.create({name: fileName, userId: req.userData._id});
         successHandler(res, 201, allConstants.FILE_UPLOAD_SUCCESS_MSG)
     } catch (error) {
-        console.log("error", error)
+        console.log(error);
         return errorHandler(res, 500, allConstants.ERR_MSG);
     }
 }
@@ -86,7 +86,7 @@ export const givePermission = async (req, res) => {
   try {
     const {_id} = req.userData;
     await filePermissionModel.findOneAndUpdate({userId: _id}, {userId: _id, allowedUser: req.body.userIds}, {new: true, upsert: true });
-    return successHandler(res, 200, allConstants.PERMISSION_CHNG_SUCCESS)
+    return successHandler(res, 200, allConstants.PERMISSION_CHNG_SUCCESS);
   } catch (error) {
     console.log(error);
     return errorHandler(res, 500, allConstants.ERR_MSG);
