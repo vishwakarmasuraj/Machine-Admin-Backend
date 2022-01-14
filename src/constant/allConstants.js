@@ -10,6 +10,7 @@ module.exports = Object.freeze({
     LOGIN_SUCCESS_MSG: 'Logged in successfully',
     EMAIL_NOT_FOUND: "Email does not exist",
     ERROR_MSG: 'Email is not match',
+    PERMISSION_CHNG_SUCCESS: 'Permission changed successfully!',
     PASSWORD_NOT_MATCH: 'Wrong password',
     FILE_NOT_FOUND: 'File does not exists.',
     DONT_ACCESS_FOR_FILE: 'You do not have the access for this file.',

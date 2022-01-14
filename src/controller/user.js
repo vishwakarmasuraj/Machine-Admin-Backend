@@ -59,10 +59,10 @@ export const fileGet = async(req, res) => {
     console.log(req.userData)
     const {_id} = req.userData
     const result = await userModel.find({_id: {$ne: _id}}).select('-password')
-    res.status(200).json({message: 'Found record', result})
+    return successHandler(res, 200, allConstants.GET_FILE_MSG, result)
   } catch (error) {
     console.log(error)
-    res.status(500).json({message: 'Something went wrong'});
+    errorHandler(res, 500, allConstants.ERR_MSG)
   };
 };
 
@@ -70,10 +70,10 @@ export const givePermission = async (req, res) => {
   try {
     const {_id} = req.userData;
     await filePermissionModel.findOneAndUpdate({userId: _id}, {userId: _id, allowedUser: req.body.userIds}, {new: true, upsert: true });
-    res.status(200).json({message: 'Permission changed successfully!'})
+    return successHandler(res, 200, allConstants.PERMISSION_CHNG_SUCCESS)
   } catch (error) {
     console.log(error)
-    res.status(500).json({message: 'Something went wrong'});
+    return errorHandler(res, 500, allConstants.ERR_MSG)
   }
 };
 
