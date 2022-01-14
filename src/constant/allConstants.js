@@ -14,5 +14,8 @@ module.exports = Object.freeze({
     PASSWORD_NOT_MATCH: 'Wrong password',
     FILE_NOT_FOUND: 'File does not exists.',
     DONT_ACCESS_FOR_FILE: 'You do not have the access for this file.',
-    FILE_UPLOAD_SUCCESS_MSG: 'Successfully uploaded file'
+    FILE_UPLOAD_SUCCESS_MSG: 'Successfully uploaded file',
+    NOT_FOUND_RECORD: 'No records found.',
+    LOGIN_PASS_DONT_MATCH: 'Password do not match',
+    RECORD_TRUNCATED: 'Record has been truncated'
 })

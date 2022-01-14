@@ -25,6 +25,10 @@ router.get('/users', auth.verifyToken, userController.fileGet)
  * 
  */
 router.post("/allow-permission", auth.verifyToken, userController.givePermission)
+/**
+ * 
+ */
+router.delete('/truncate', auth.verifyToken, userController.userTruncate);
 
 
 module.exports = router
