@@ -26,6 +26,9 @@ TODO: Express
 ## Usage
 TODO: By this PUC project User can understand the flow of File uploading, save into database and allow not allow the access of upload file. 
 ## Contributing
+## DB_URL=Database String
+## npm start
+## npm run dev
 1. Git command 
 2. Create your feature branch: `git checkout -b feature/signup`
 3. Commit your changes: `git commit -am 'Starting signup'`

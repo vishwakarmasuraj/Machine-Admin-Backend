@@ -5,7 +5,6 @@ import {allConstants} from '../constant';
 
 export const userListing = async (req, res) => {
     try {
-        console.log(req.userData.fullName)
         const {_id} = req.userData 
         const result = await userModel.find({_id: {$ne: _id}}).select('-password');
         if (!result){
