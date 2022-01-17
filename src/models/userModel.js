@@ -9,12 +9,6 @@ const UserModel = new Schema ({
     },
     password: {
         type: Schema.Types.String
-    },
-    file: {
-        type: Schema.Types.String
-    },
-    url: {
-        type: Schema.Types.String
     }
 }, {timestamps: true})
 

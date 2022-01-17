@@ -16,11 +16,15 @@ import routes from './router';
     app.use(cors());
     app.use('/api', routes)
     const port = process.env.PORT || 8000
-    await mongoose.connect(process.env.DB_URL, {});
-    const server = http.createServer(app);
-    server.listen(port)
-    .on('listening', () => console.log(`App is starting on port: ${port}`))
-    .on('error', (err) =>
-        console.log(`An error occured while starting server`, err)
-    )
+    try {
+        await mongoose.connect(process.env.DB_URL, {});
+        const server = http.createServer(app);
+        server.listen(port)
+        .on('listening', () => console.log(`App is starting on port: ${port}`))
+        .on('error', (err) =>
+            console.log(`An error occured while starting server`, err)
+        )
+    } catch (error) {
+        console.log('An error happening to connect the DB URL!')
+    }
 })();

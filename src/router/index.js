@@ -4,11 +4,11 @@ const router = express.Router();
 /**
  * 
  */
-router.use('/auth', require('./userRouter'));
+router.use('/user', require('./userRouter'));
 /**
  * 
  */
-router.use('/upload', require('./fileUpload'));
+router.use('/auth', require('./authRouter'));
 /**
  * 
  */
