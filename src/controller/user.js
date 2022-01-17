@@ -1,8 +1,9 @@
 import {userModel, fileModel, filePermissionModel} from '../models';
 import { successHandler, errorHandler } from '../helper/responseHandler';
+import { passwordHelper } from '../helper';
 import {allConstants} from '../constant';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+
 
 export const addUser = async (req, res) => {
     try {
@@ -13,12 +14,6 @@ export const addUser = async (req, res) => {
     } catch (error) {
         return errorHandler(res, 500, allConstants.ERR_MSG);
     };
-};
-
-export const generateToken = (user) => {
-  return jwt.sign({ data: user }, process.env.SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
 };
 
 export const userLogin = async (req, res) => {
@@ -32,7 +27,7 @@ export const userLogin = async (req, res) => {
       return errorHandler(res, 400, allConstants.PASSWORD_DOES_NOT_MATCH);
     };
     return successHandler(res, 200, allConstants.LOGIN_SUCCESS_MSG, {
-      token: generateToken(data),
+      token: passwordHelper.generateToken(data),
       data
     });
   } catch (error) {
