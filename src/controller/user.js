@@ -39,7 +39,10 @@ export const userListing = async (req, res) => {
     try {
         const {_id} = req.userData 
         const result = await userModel.find({_id: {$ne: _id}}).select('-password');
-        successHandler(res, 200, allConstants.FOUND_USER_LIST, result );
+        if (!result){
+          return errorHandler(res, 404, allConstants.NOT_FOUND_RECORD);
+        };
+        return successHandler(res, 200, allConstants.FOUND_USER_LIST, result );
     } catch (error) {
         errorHandler(res, 500, allConstants.ERR_MSG);
     };
@@ -59,6 +62,9 @@ export const fileGet = async(req, res) => {
   try {
     const {_id} = req.userData
     const result = await userModel.find({_id: {$ne: _id}}).select('-password');
+    if (!result){
+      return errorHandler(res, 404, allConstants.FILE_NOT_FOUND)
+    }
     return successHandler(res, 200, allConstants.GET_FILE_MSG, result);
   } catch (error) {
     console.log(error)
