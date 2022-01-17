@@ -27,11 +27,13 @@ TODO: Express
 TODO: By this PUC project User can understand the flow of File uploading, save into database and allow not allow the access of upload file. 
 ## Contributing
 ## DB_URL=Database String
+## PORT=process.env.PORT
+## SECRET_KEY=Should be String
+## JWT_EXPIRES_IN=Should be in hours
+## npm i
 ## npm start
 ## npm run dev
 1. Git command 
-2. Create your feature branch: `git checkout -b feature/signup`
+2. Create your feature branch: `git checkout -b feature/branch_name`
 3. Commit your changes: `git commit -am 'Starting signup'`
-4. Push to the branch: `git push origin feature/signup`
-
-
+4. Push to the branch: `git push origin feature/branch_name`

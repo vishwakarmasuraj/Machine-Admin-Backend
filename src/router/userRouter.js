@@ -7,11 +7,11 @@ import {userController} from '../controller'
 /**
  * 
  */
-router.get('/user-list', auth.verifyToken, userController.userListing)
+router.get('/user-list', auth.verifyToken, userController.userListing);
 /**
  * 
  */
-router.post("/allow-permission", auth.verifyToken, userController.givePermission)
+router.post("/allow-permission", auth.verifyToken, userController.givePermission);
 /**
  * 
  */

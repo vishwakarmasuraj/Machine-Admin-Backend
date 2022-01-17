@@ -20,5 +20,6 @@ module.exports = Object.freeze({
     NOT_FOUND_RECORD: 'No records found.',
     LOGIN_PASS_DONT_MATCH: 'Password do not match',
     UPLOAD_FILE_RECORD_FOUND: 'File record found.',
+    INVALID_TOKEN: 'Invalid token',
     RECORD_TRUNCATED: 'Record has been truncated'
 })

@@ -1,4 +1,6 @@
+import { errorHandler } from '../helper/responseHandler';
 import jwt from 'jsonwebtoken';
+import {allConstants} from '../constant';
 
 export const verifyToken = async (req, res, next) => {
     try {
@@ -8,7 +10,7 @@ export const verifyToken = async (req, res, next) => {
         next ()
     } catch (error) {
         console.log(error)
-        return res.status(404).json({message: 'Invalid Token'});
+        return errorHandler(res, 404, allConstants.INVALID_TOKEN)
     };
 };
 

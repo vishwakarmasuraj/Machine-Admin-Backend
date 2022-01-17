@@ -25,6 +25,6 @@ import routes from './router';
             console.log(`An error occured while starting server`, err)
         )
     } catch (error) {
-        console.log('An error happening to connect the DB URL!')
+        console.log('An error happening to connect with the DB URL!')
     }
 })();
