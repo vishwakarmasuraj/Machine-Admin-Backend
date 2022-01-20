@@ -9,6 +9,6 @@ const filePermissionModel = new Schema ({
             type: Schema.Types.ObjectId,
             ref: 'User'
         }]
-}, {timestamps: true})
+}, {timestamps: true});
 
 module.exports = model('FilePermission', filePermissionModel, 'FilePermission')

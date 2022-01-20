@@ -1,4 +1,4 @@
-import {userModel, filePermissionModel} from '../models';
+import {userModel, filePermissionModel, fileModel} from '../models';
 import { successHandler, errorHandler } from '../helper/responseHandler';
 import {allConstants} from '../constant';
 
@@ -35,6 +35,16 @@ export const givePermission = async (req, res) => {
   } catch (error) {
     console.log(error);
     return errorHandler(res, 500, allConstants.ERR_MSG);
-  }
+  };
 };
 
+export const canSeePermissionFileMember = async (req, res) => {
+  try {
+    const {_id} = req.userData
+    const result = await fileModel.find({userIds: _id})
+    res.status(200).json({msg: 'successfully found', result});
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({msg: 'something went wrong'});
+  };
+};
