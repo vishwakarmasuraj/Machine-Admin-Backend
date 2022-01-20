@@ -12,7 +12,7 @@ router.get('/file-list', auth.verifyToken, fileController.fileListing);
 /**
  * 
  */
-router.post('/file-upload', auth.verifyToken, uploadFile.single('file'), fileController.fileUpload)
+router.post('/file-upload', auth.verifyToken, uploadFile.single('file'), fileController.fileUpload);
 /**
  * 
  */
