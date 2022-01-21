@@ -26,5 +26,6 @@ import routes from './router';
         )
     } catch (error) {
         console.log('An error happening to connect with the DB URL!')
+        return
     }
 })();
