@@ -1,4 +1,4 @@
-import {userModel, filePermissionModel, fileModel} from '../models';
+import {userModel, filePermissionModel} from '../models';
 import { successHandler, errorHandler } from '../helper/responseHandler';
 import {allConstants} from '../constant';
 
